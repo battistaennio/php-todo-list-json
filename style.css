@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* contenitore generale */
+#container {
+    margin: 30px 30%;
+    padding: 10px 0;
+    text-align: center;
+    background-color: #f5f1a6;
+    border-radius: 15px;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: #3d4679;
+}
+
+/* contenitore lista */
+#list-container {
+    margin: 10px 20%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+ul {
+    list-style: none;
+    width: 100%;
+}
+
+li {
+    border-bottom: 2px solid #b7c4a6;
+    padding: 10px;
+    font-size: 20px;
+    text-align: left;
+    position: relative;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+li i {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+/* form */
+input {
+    margin: 10px 0;
+    text-align: center;
+    padding: 5px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+}
+
+button {
+    padding: 5px 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
