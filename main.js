@@ -5,7 +5,8 @@ createApp({
         return {
             apiUrl: "server.php",
             list: [],
-            newTask: ""
+            newTask: "",
+            invalidTask: false
         }
     },
     methods: {
@@ -16,16 +17,22 @@ createApp({
                 })
         },
         addNewTask() {
-            const data = { newTask: this.newTask };
+            if (this.newTask !== "" && this.newTask.length >= 5) {
+                const data = { newTask: this.newTask };
 
-            axios.post(this.apiUrl, data, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            })
-                .then(response => {
-                    console.log(response.data);
-                    this.list = response.data;
-                    this.newTask = "";
+                axios.post(this.apiUrl, data, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
                 })
+                    .then(response => {
+                        console.log(response.data);
+                        this.list = response.data;
+                    });
+                this.invalidTask = false;
+            } else {
+                this.invalidTask = true;
+            }
+
+            this.newTask = "";
         },
         removeTask(index) {
             const data = { indexToDelete: index };
@@ -36,9 +43,8 @@ createApp({
                     console.log(response.data);
                     this.list = response.data;
                 })
-
+            //debug
             console.log(this.list);
-
         }
     },
     mounted() {

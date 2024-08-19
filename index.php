@@ -42,16 +42,20 @@ Al click di un bottone “VEDI” atterrare in una schermata che visualizza il t
         <div>
             <input @keyup.enter="addNewTask" type="text" placeholder="aggiungi task" v-model.trim="newTask">
             <br>
-            <button @click="addNewTask">Aggiungi</button>            
+            <button @click="addNewTask">Aggiungi</button>
+            <div style="color: red;" v-if="invalidTask">
+                <span>Il nuovo task deve contenere almeno 5 caratteri</span>
+            </div>         
         </div>
 
         <div id="list-container">
-            <ul>
+            <ul v-if="list.length > 0">
                 <li v-for="(element, index) in list" :key="index">
                     <span>{{element}}</span>
                     <i @click="removeTask(index)" class="fa-solid fa-trash-can"></i>
                 </li>
-            </ul>            
+            </ul>
+            <h2 v-else style="color: #3d4679;">Non hai task!</h2>           
         </div>
     </div>
 
