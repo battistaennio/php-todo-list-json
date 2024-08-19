@@ -47,9 +47,9 @@ Al click di un bottone “VEDI” atterrare in una schermata che visualizza il t
 
         <div id="list-container">
             <ul>
-                <li>
-                    <span>Esempio</span>
-                    <i @click="" class="fa-solid fa-xmark"></i>
+                <li v-for="element in list">
+                    <span>{{element.task}}</span>
+                    <i @click="" class="fa-solid fa-trash-can"></i>
                 </li>
             </ul>            
         </div>
