@@ -1,0 +1,15 @@
+<?php
+//recupero il file .json e lo salvo come stringa
+$string = file_get_contents('todo.json');
+
+//trasformo la stringa in un elemento php
+$list = json_decode($string);
+
+
+
+
+//modifico il file in modo tale che venga interpretato come JSON
+header('Content-Type: application/json');
+
+//stampo l'elemento php sottoforma di stringa
+echo json_encode($list);
