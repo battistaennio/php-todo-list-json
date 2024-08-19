@@ -12,6 +12,11 @@ if(isset($_POST['newTask'])){
     file_put_contents('todo.json', json_encode($list));
 }
 
+if(isset($_POST['indexToDelete'])){
+    $index = $_POST['indexToDelete'];
+    array_splice($list, $index, 1);
+    file_put_contents('todo.json', json_encode($list));
+}
 
 //modifico il file in modo tale che venga interpretato come JSON
 header('Content-Type: application/json');
