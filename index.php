@@ -40,15 +40,15 @@ Al click di un bottone “VEDI” atterrare in una schermata che visualizza il t
         <h1>lista delle cose da fare</h1>
 
         <form action="#">
-            <input type="text" placeholder="aggiungi task" v-model="newTask">
+            <input @keyup.enter="addNewTask()" type="text" placeholder="aggiungi task" v-model.trim="newTask">
             <br>
-            <button>Aggiungi</button>            
+            <button @click="addNewTask()">Aggiungi</button>            
         </form>
 
         <div id="list-container">
             <ul>
-                <li v-for="element in list">
-                    <span>{{element.task}}</span>
+                <li v-for="(element, index) in list" :key="index">
+                    <span>{{element}}</span>
                     <i @click="" class="fa-solid fa-trash-can"></i>
                 </li>
             </ul>            

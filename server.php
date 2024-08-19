@@ -6,6 +6,11 @@ $string = file_get_contents('todo.json');
 $list = json_decode($string);
 
 
+if(isset($_POST['newTask'])){
+    $newTask = $_POST['newTask'];
+    $list[] = $newTask;
+    file_put_contents('todo.json', json_encode($list));
+}
 
 
 //modifico il file in modo tale che venga interpretato come JSON

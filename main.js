@@ -4,8 +4,8 @@ createApp({
     data() {
         return {
             apiUrl: "server.php",
-            newTask: "",
             list: [],
+            newTask: ""
         }
     },
     methods: {
@@ -13,11 +13,22 @@ createApp({
             axios.get(this.apiUrl)
                 .then(response => {
                     this.list = response.data;
-                    console.log(this.list);
+                })
+        },
+        addNewTask() {
+            const data = { newTask: this.newTask };
+
+            axios.post(this.apiUrl, data, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            })
+                .then(response => {
+                    console.log(response.data);
+                    this.list = response.data;
+                    this.newTask = "";
                 })
         }
     },
     mounted() {
-        this.getApi()
+        this.getApi();
     }
-}).mount("#container")
+}).mount("#container");
