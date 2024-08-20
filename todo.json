@@ -1,4 +1,10 @@
 [
-    "fare la spesa",
-    "ritirare i panni"
+    {
+        "task": "fare la spesa",
+        "done": false
+    },
+    {
+        "task": "ritirare il bucato",
+        "done": false
+    }
 ]
