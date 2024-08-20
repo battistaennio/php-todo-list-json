@@ -43,8 +43,16 @@ createApp({
                     console.log(response.data);
                     this.list = response.data;
                 })
-            //debug
-            console.log(this.list);
+        },
+        convertDone(index) {
+            const data = { indexToConvert: index };
+            axios.post(this.apiUrl, data, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            })
+                .then(response => {
+                    console.log(response.data);
+                    this.list = response.data;
+                })
         }
     },
     mounted() {

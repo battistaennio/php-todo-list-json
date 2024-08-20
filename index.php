@@ -51,7 +51,7 @@ Al click di un bottone “VEDI” atterrare in una schermata che visualizza il t
         <div id="list-container">
             <ul v-if="list.length > 0">
                 <li v-for="(element, index) in list" :key="index">
-                    <span>{{element}}</span>
+                    <span @click="convertDone(index)" :class="element.done === true ? 'line-through' : ''">{{element.task}}</span>
                     <i @click="removeTask(index)" class="fa-solid fa-trash-can"></i>
                 </li>
             </ul>

@@ -7,7 +7,10 @@ $list = json_decode($string);
 
 
 if(isset($_POST['newTask'])){
-    $newTask = $_POST['newTask'];
+    $newTask = [
+        "task" => $_POST['newTask'],
+        "done" => false
+    ];
     $list[] = $newTask;
     file_put_contents('todo.json', json_encode($list));
 }
@@ -17,6 +20,13 @@ if(isset($_POST['indexToDelete'])){
     array_splice($list, $index, 1);
     file_put_contents('todo.json', json_encode($list));
 }
+
+if (isset($_POST['indexToConvert'])) {
+    $index = $_POST['indexToConvert'];
+    $list[$index]->done = !$list[$index]->done;
+    file_put_contents('todo.json', json_encode($list));
+}
+
 
 //modifico il file in modo tale che venga interpretato come JSON
 header('Content-Type: application/json');
