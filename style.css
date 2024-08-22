@@ -50,6 +50,10 @@ li i {
     font-size: 25px;
 }
 
+li span {
+    cursor: pointer;
+}
+
 li:last-child {
     border-bottom: none;
 }
