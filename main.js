@@ -5,7 +5,10 @@ createApp({
         return {
             apiUrl: "server.php",
             list: [],
-            newTask: "",
+            newTask: {
+                task: '',
+                description: ''
+            },
             invalidTask: false
         }
     },
@@ -17,40 +20,37 @@ createApp({
                 })
         },
         addNewTask() {
-            if (this.newTask !== "" && this.newTask.length >= 5) {
-                const data = { newTask: this.newTask };
+            if (this.newTask.task.length < 5 || this.newTask.description.length < 5) {
+                this.invalidTask = true;
+            } else {
+                const data = new FormData();
+                data.append('task', this.newTask.task);
+                data.append('description', this.newTask.description);
 
-                axios.post(this.apiUrl, data, {
-                    headers: { 'Content-Type': 'multipart/form-data' }
-                })
+                axios.post(this.apiUrl, data)
                     .then(response => {
-                        console.log(response.data);
                         this.list = response.data;
+                        console.log(this.list);
+
                     });
                 this.invalidTask = false;
-            } else {
-                this.invalidTask = true;
+                this.newTask.task = "";
+                this.newTask.description = "";
             }
-
-            this.newTask = "";
         },
         removeTask(index) {
-            const data = { indexToDelete: index };
-            axios.post(this.apiUrl, data, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            })
+            const data = new FormData();
+            data.append('indexToDelete', index)
+            axios.post(this.apiUrl, data)
                 .then(response => {
-                    console.log(response.data);
                     this.list = response.data;
                 })
         },
         convertDone(index) {
-            const data = { indexToConvert: index };
-            axios.post(this.apiUrl, data, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            })
+            const data = new FormData();
+            data.append('indexToConvert', index)
+            axios.post(this.apiUrl, data)
                 .then(response => {
-                    console.log(response.data);
                     this.list = response.data;
                 })
         }

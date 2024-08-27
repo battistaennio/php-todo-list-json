@@ -40,7 +40,8 @@ Al click di un bottone “VEDI” atterrare in una schermata che visualizza il t
         <h1>lista delle cose da fare</h1>
 
         <div>
-            <input @keyup.enter="addNewTask" type="text" placeholder="aggiungi task" v-model.trim="newTask">
+            <input type="text" placeholder="aggiungi task" v-model.trim="newTask.task">
+            <input type="text" placeholder="aggiungi descrizione" v-model.trim="newTask.description">
             <br>
             <button @click="addNewTask">Aggiungi</button>
             <div style="color: red;" v-if="invalidTask">
@@ -57,6 +58,9 @@ Al click di un bottone “VEDI” atterrare in una schermata che visualizza il t
                     {{element.task}}
                     </span>
                     <i v-show="element.done" @click="removeTask(index)" class="fa-solid fa-trash-can"></i>
+                    <a :href="`task-description.php?index=${index}`">
+                        <i class="fa-solid fa-eye"></i>
+                    </a>
                 </li>
             </ul>
             <h2 v-else style="color: #3d4679;">Non hai task!</h2>           

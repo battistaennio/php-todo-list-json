@@ -3,12 +3,13 @@
 $string = file_get_contents('todo.json');
 
 //trasformo la stringa in un elemento php
-$list = json_decode($string);
+$list = json_decode($string, true);
 
 
-if(isset($_POST['newTask'])){
+if(isset($_POST['task'])){
     $newTask = [
-        "task" => $_POST['newTask'],
+        "task" => $_POST['task'],
+        "description" => $_POST['description'],
         "done" => false
     ];
     $list[] = $newTask;
@@ -23,7 +24,7 @@ if(isset($_POST['indexToDelete'])){
 
 if (isset($_POST['indexToConvert'])) {
     $index = $_POST['indexToConvert'];
-    $list[$index]->done = !$list[$index]->done;
+    $list[$index]['done'] = !$list[$index]['done'];
     file_put_contents('todo.json', json_encode($list));
 }
 
